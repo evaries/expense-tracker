@@ -3,9 +3,8 @@ import { GlobalContext } from '../context/GlobalState'
 
 
 function Transaction({ transaction }) {
-  // import deleteTransaction from Global Context
   const { deleteTransaction } = useContext(GlobalContext)
-  //create + or - sign just for UI
+  //create '+' or "-" sign just for UI
   const sign = transaction.amount < 0 ? '-' : '+'
   return (
     <li className={transaction.amount < 0 ? 'minus' : 'plus'}>

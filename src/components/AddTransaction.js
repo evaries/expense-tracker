@@ -8,8 +8,8 @@ function AddTransaction() {
   const [text, setText] = useState('')
   const [amount, setAmount] = useState('')
 
-  //import addTransaction from GlobalContext
   const { addTransaction } = useContext(GlobalContext)
+
   //alert for blank field
   const errorAlert = () => {
     Swal.fire({
@@ -19,11 +19,9 @@ function AddTransaction() {
     })
   }
 
-  //create new transaction with id, text and amount and pass it into addTransaction func
-  // which will take it as a payload for dispatch
   const onSubmit = e => {
+    e.preventDefault()
     if (text && amount) {
-      e.preventDefault()
       const newTransaction = {
         id: uuidv4(),
         text,
@@ -34,7 +32,6 @@ function AddTransaction() {
       setText('')
       setAmount('')
     } else {
-      e.preventDefault()
       errorAlert()
     }
   }

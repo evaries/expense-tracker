@@ -5,29 +5,26 @@ const initialState = {
   transactions: []
 };
 
-//create context, pass relevant state to it
 export const GlobalContext = createContext(initialState)
 
-//create provider, take {children} components (Header, Balance, ets.) as parameter 
-//use hook useReducer and pass AppReducer as custom reducer and initial state
-//return provider with value, which will be used anywhere in consumer components
+// create provider, recive {children} components (Header, Balance, ets.) as parameter, 
+// in useReducer pass AppReducer as custom reducer and initial state
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  //create function with delete type of dispatch
+
   const deleteTransaction = (id) => {
     dispatch({
       type: 'DELETE_TRANSACTION',
       payload: id
     })
   }
-  //create function with add type of dispatch
   const addTransaction = (transaction) => {
     dispatch({
       type: 'ADD_TRANSACTION',
       payload: transaction
     })
   }
-
+  // return provider with value, which will be available in consuming components
   return (<GlobalContext.Provider
     value={{
       transactions: state.transactions,
