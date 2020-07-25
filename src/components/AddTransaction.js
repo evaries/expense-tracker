@@ -28,7 +28,7 @@ function AddTransaction() {
         amount: +amount //parse string to number
       }
       addTransaction(newTransaction)
-      //clear inputs field
+      //clean up inputs field
       setText('')
       setAmount('')
     } else {
